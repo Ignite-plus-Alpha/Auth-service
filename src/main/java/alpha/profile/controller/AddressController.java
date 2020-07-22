@@ -24,10 +24,10 @@ public class AddressController {
         return addressService.getAllAddress();
     }
 
-    @GetMapping("/address/{addressId}")
-    public Optional<Address> getAddressById(@PathVariable("addressId")String addressId) {
+    @GetMapping("/address/{emailId}")
+    public List<Address> getAllAddressesByEmail(@PathVariable("emailId")String addressId) {
         try {
-            return addressService.getAddressById( addressId );
+            return addressService.getAddressesByEmailId( addressId );
         } catch (AddressNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
         }
@@ -38,13 +38,20 @@ public class AddressController {
         return addressService.createAddress(address);
     }
 
-    @DeleteMapping("/address/{addressId}")
-    public void deleteAddressById(@PathVariable("addressId") String addressId) throws AddressNotFoundException {
-        addressService.deleteAddressById(addressId);
+
+    //get address by emailId/addressId
+    @GetMapping("/address/{emailId}/{addressId}")
+    public Address getAddressByEmailIdAddressId(@PathVariable("emailId") String emailId,@PathVariable("addressId") String addressId){
+        return addressService.getAddressByEmailIdAddressId(emailId,addressId);
     }
 
-    @PutMapping("/address/{addressId}")
-    public Address updateAddressByIdById(@PathVariable("addressId") String addressId,@RequestBody String address) throws AddressNotFoundException{
-        return addressService.updateAddressById(addressId, address);
+//    @DeleteMapping("/address/{addressId}")
+//    public void deleteAddressById(@PathVariable("addressId") String addressId) throws AddressNotFoundException {
+//        addressService.deleteAddressById(addressId);
+//    }
+//
+    @PutMapping("/address/{email}/{addressId}")
+    public Address updateAddressByEmailAddressId(@PathVariable("email") String email,@PathVariable("addressId") String addressId,@RequestBody Address address) throws AddressNotFoundException{
+        return addressService.updateAddressByEmailIdAddressId(email,addressId, address);
     }
 }

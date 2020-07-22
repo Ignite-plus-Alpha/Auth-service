@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -22,6 +23,13 @@ public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
+    @GetMapping("/users")
+    public List<Profile> getAllUsers() {
+        return profileService.getAll();
+
+
+    }
+
     @GetMapping("/user/{emailId}")
     public Optional<Profile> getUserByEmailId(@PathVariable("emailId") String emailId) {
 
@@ -32,15 +40,15 @@ public class ProfileController {
         }
     }
 
-    @GetMapping("/user/{userId}")
-    public Optional<Profile> getUserById(@PathVariable("userId") String userId) {
-        try {
-            return profileService.getUserById(userId);
-        } catch (UserNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
-
-        }
-    }
+//    @GetMapping("/user/{userId}")
+//    public Optional<Profile> getUserById(@PathVariable("userId") String userId) {
+//        try {
+//            return profileService.getUserById(userId);
+//        } catch (UserNotFoundException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
+//
+//        }
+//    }
 
     @PostMapping("/user")
     public Profile createUser(@RequestBody Profile profile) {
@@ -55,10 +63,10 @@ public class ProfileController {
     }
 
 
-    @PutMapping("/user/{userId}")
-    public Profile updateUserById(@PathVariable("userId") String userId, @RequestBody String newName) {
+    @PutMapping("/user/{emailId}")
+    public Profile updateUserById(@PathVariable("emailId") String emailId, @RequestBody Profile profile) {
         try {
-            return profileService.updateUserById(userId, newName);
+            return profileService.updateUserById(emailId, profile);
         } catch (UserNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
         }

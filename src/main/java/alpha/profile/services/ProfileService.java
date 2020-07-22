@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,6 +16,13 @@ public class ProfileService {
 
     @Autowired
     private ProfileDao profileDao;
+
+
+
+    //getAllGroups
+    public List<Profile> getAll(){
+        return profileDao.findAll();
+    }
 
     //Createuser
     public Profile createUser(Profile profile) {
@@ -29,36 +37,39 @@ public class ProfileService {
         return user;
     }
 
-    public Optional<Profile> getUserById(String userId) throws UserNotFoundException {
-        Optional<Profile> user= profileDao.findById(userId);
+//    public Optional<Profile> getUserById(String userId) throws UserNotFoundException {
+//        Optional<Profile> user= profileDao.findById(userId);
+//
+//        if(!user.isPresent())
+//            throw new UserNotFoundException("user not found");
+//        return user;
+//    }
 
-        if(!user.isPresent())
-            throw new UserNotFoundException("user not found");
-        return user;
-    }
 
 
+    public void deleteUserById(String emailId) {
 
-    public void deleteUserById(String userId) {
-
-        Optional<Profile> user= profileDao.findById(userId);
+        Optional<Profile> user= profileDao.findById(emailId);
         if(!user.isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"User not found in repo,enter correct details");
         }
 
-        profileDao.deleteById(userId);
+        profileDao.deleteById(emailId);
 
     }
 
 
-    public Profile updateUserById(String userId, String newName) throws UserNotFoundException {
+    public Profile updateUserById(String emailId, Profile profile) throws UserNotFoundException {
 
-        Optional<Profile> userData = profileDao.findById(userId);
+        Optional<Profile> userData = profileDao.findById(emailId);
 
-        if(profileDao.findById(userId).isPresent()) {
-            Profile profile =userData.get();
-            profile.setFirstName(newName);
-            return profileDao.save(profile);
+        if(profileDao.findById(emailId).isPresent()) {
+            Profile prev = userData.get();
+            prev.setFirstName(profile.getFirstName());
+            prev.setLastName(profile.getLastName());
+            prev.setMobile(profile.getMobile());
+            prev.setPassword(profile.getPassword());
+            return profileDao.save(prev);
         }
         throw new UserNotFoundException("User not found");
     }
