@@ -35,7 +35,7 @@ public class WalletController {
     }
 
     @GetMapping("/wallet/{emailid}/{walletid}")
-    public Wallet getWalletByEmailIdWalletId(@PathVariable("walletId")String emailId, @PathVariable("walletId")String walletId) throws WalletNotFoundException {
+    public Wallet getWalletByEmailIdWalletId(@PathVariable("emailid")String emailId, @PathVariable("walletid")String walletId) throws WalletNotFoundException {
         return walletService.getWalletByEmailIdWalletId(emailId, walletId );
     }
 
@@ -52,5 +52,12 @@ public class WalletController {
     @PutMapping("/wallet/{emailId}/{walletId}")
     public Wallet updateWalletByEmailIdWalletId(@PathVariable("emailId") String emailId,@PathVariable("walletId") String walletId,@RequestBody Wallet wallet) throws WalletNotFoundException{
         return walletService.updateWalletByEmailIdWalletId(emailId,walletId, wallet);
+    }
+
+
+    //delete a particular address of a user taking their emailId and the particular addressId
+    @DeleteMapping("/wallet/{emailId}/{walletId}")
+    public void deleteWalletByEmailIdWalletId(@PathVariable("emailId") String emailId,@PathVariable("walletId") String walletId) throws WalletNotFoundException{
+        walletService.deleteWalletByEmailIdWalletId(emailId, walletId);
     }
 }

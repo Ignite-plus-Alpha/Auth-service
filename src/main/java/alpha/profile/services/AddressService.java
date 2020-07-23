@@ -4,6 +4,7 @@ import alpha.profile.exceptions.AddressNotFoundException;
 import alpha.profile.model.Address;
 import alpha.profile.dao.AddressDao;
 import alpha.profile.model.Profile;
+import alpha.profile.model.Wallet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -68,6 +69,21 @@ public class AddressService {
         }
         return null;
     }
+
+    //delete particular address by email and AddressId
+    public void deleteAddressByEmailIdAddressId(String email,String addressId) {
+        List<Address>  addresses = addressDao.findByEmail(email);
+        for (Address tempAddress:addresses
+        ) {
+            if(tempAddress.getAddressId().equals(addressId) )
+            {  addressDao.delete(tempAddress);
+            }
+        }
+
+    }
+
+
+
 
 //    public Address updateAddressById(String addressId,String addressline1) throws AddressNotFoundException {
 //        Optional<Address> addressData = addressDao.findById(addressId);

@@ -1,6 +1,7 @@
 package alpha.profile.controller;
 
 import alpha.profile.exceptions.AddressNotFoundException;
+import alpha.profile.exceptions.WalletNotFoundException;
 import alpha.profile.model.Address;
 import alpha.profile.services.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,12 @@ public class AddressController {
     @PutMapping("/address/{email}/{addressId}")
     public Address updateAddressByEmailAddressId(@PathVariable("email") String email,@PathVariable("addressId") String addressId,@RequestBody Address address) throws AddressNotFoundException{
         return addressService.updateAddressByEmailIdAddressId(email,addressId, address);
+    }
+
+
+    //delete a particular address of a user taking their emailId and the particular addressId
+    @DeleteMapping("/address/{emailId}/{addressId}")
+    public void deleteAddressByEmailIdWalletId(@PathVariable("emailId") String emailId,@PathVariable("addressId") String addressId) throws AddressNotFoundException {
+        addressService.deleteAddressByEmailIdAddressId(emailId, addressId);
     }
 }

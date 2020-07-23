@@ -47,10 +47,8 @@ public class WalletServices {
         ) {
             if(tempWallet.getWalletid().equals(walletId) )
            {
-               //tempWallet.setCardholderName(newWallet.getCardholderName());
-                tempWallet.setExpiryDate(newWallet.getExpiryDate());
+                  tempWallet.setExpiryDate(newWallet.getExpiryDate());
                 return walletDao.save(tempWallet);
-
            }
         }
         throw new WalletNotFoundException("wallet not found");
@@ -70,9 +68,21 @@ public class WalletServices {
         return null;
     }
 
+    //delete particular address by email and AddressId
+    public void deleteWalletByEmailIdWalletId(String email,String walletId) {
+        List<Wallet>  wallets = walletDao.findByEmail(email);
+        for (Wallet tempWallet:wallets
+        ) {
+            if(tempWallet.getWalletid().equals(walletId) )
+            {  walletDao.delete(tempWallet);
+            }
+        }
+
+    }
 
 
-//
+
+
 //    public Optional<Wallet> getWalletById(String walletId) throws WalletNotFoundException {
 //        Optional<Wallet> wallet = walletDao.findById(walletId);
 //
