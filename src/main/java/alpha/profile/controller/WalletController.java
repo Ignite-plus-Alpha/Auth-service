@@ -1,6 +1,8 @@
 package alpha.profile.controller;
 
+import alpha.profile.exceptions.AddressNotFoundException;
 import alpha.profile.exceptions.WalletNotFoundException;
+import alpha.profile.model.Address;
 import alpha.profile.model.Wallet;
 import alpha.profile.services.WalletServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -19,17 +20,23 @@ public class WalletController {
     private WalletServices walletService;
 
     @GetMapping("/wallet")
-    public List<Wallet> getAllWallet() {
+    public List<Wallet> getAllWallets() {
         return walletService.getAllWallet();
     }
 
-    @GetMapping("/wallet/{walletId}")
-    public Optional<Wallet> getWalletById(@PathVariable("walletId")String walletId) {
+
+    @GetMapping("/wallet/{emailId}")
+    public List<Wallet> getAllWalletsByEmail(@PathVariable("emailId")String emailId) {
         try {
-            return walletService.getWalletById( walletId );
+            return walletService.getWalletsByEmail( emailId );
         } catch (WalletNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
         }
+    }
+
+    @GetMapping("/wallet/{emailid}/{walletid}")
+    public Wallet getWalletByEmailIdWalletId(@PathVariable("walletId")String emailId, @PathVariable("walletId")String walletId) throws WalletNotFoundException {
+        return walletService.getWalletByEmailIdWalletId(emailId, walletId );
     }
 
     @PostMapping("/wallet")
@@ -37,13 +44,13 @@ public class WalletController {
         return walletService.createWallet(wallet);
     }
 
-    @DeleteMapping("/wallet/{walletId}")
-    public void deleteWalletById(@PathVariable("walletId") String walletId) throws WalletNotFoundException {
-        walletService.deleteWalletById(walletId);
-    }
+//    @DeleteMapping("/wallet/{walletId}")
+//    public void deleteWalletById(@PathVariable("walletId") String walletId) throws WalletNotFoundException {
+//        walletService.deleteWalletById(walletId);
+//    }
 
-    @PutMapping("/wallet/{walletId}")
-    public Wallet updateWalletByIdById(@PathVariable("walletId") String walletId,@RequestBody String wallet) throws WalletNotFoundException{
-        return walletService.updateWalletById(walletId, wallet);
+    @PutMapping("/wallet/{emailId}/{walletId}")
+    public Wallet updateWalletByEmailIdWalletId(@PathVariable("emailId") String emailId,@PathVariable("walletId") String walletId,@RequestBody Wallet wallet) throws WalletNotFoundException{
+        return walletService.updateWalletByEmailIdWalletId(emailId,walletId, wallet);
     }
 }

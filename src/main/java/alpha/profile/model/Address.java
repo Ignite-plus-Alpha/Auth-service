@@ -22,7 +22,7 @@ public class Address {
     @PrimaryKeyColumn(name = "email",ordinal = 0,type = PrimaryKeyType.PARTITIONED)
     private String email;
     @PrimaryKeyColumn(name = "addressId",ordinal = 0,type = PrimaryKeyType.CLUSTERED)
-    private String addressId= UUID.randomUUID().toString();;
+    private String addressId= UUID.randomUUID().toString();
 
     @Column(name="ADDRESS_LINE1",length=50,nullable=false,unique=true)
     private String addressLine1;

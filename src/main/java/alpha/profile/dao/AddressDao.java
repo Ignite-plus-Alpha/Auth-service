@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface AddressDao extends CassandraRepository<Address,String> {
-    //fetch list of categories belong to a group by its groupId
+    //fetch list of addresses associated with an email
     List<Address> findByEmail(String emailId);
 
 }

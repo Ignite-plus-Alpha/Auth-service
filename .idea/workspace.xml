@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a41bc06f-2092-49e6-905b-e3228b6a27bd" name="Default Changelist" comment="" />
+    <list default="true" id="a41bc06f-2092-49e6-905b-e3228b6a27bd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.3/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.3/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/alpha/profile/controller/AddressController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/alpha/profile/controller/AddressController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/alpha/profile/controller/WalletController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/alpha/profile/controller/WalletController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/alpha/profile/dao/WalletDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/alpha/profile/dao/WalletDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/alpha/profile/model/Wallet.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/alpha/profile/model/Wallet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/alpha/profile/services/WalletServices.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/alpha/profile/services/WalletServices.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/alpha/profile/controller/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/alpha/profile/controller/AddressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/alpha/profile/controller/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/alpha/profile/controller/WalletController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/alpha/profile/dao/AddressDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/alpha/profile/dao/AddressDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/alpha/profile/dao/WalletDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/alpha/profile/dao/WalletDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/alpha/profile/model/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/alpha/profile/model/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/alpha/profile/model/Wallet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/alpha/profile/model/Wallet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/alpha/profile/services/WalletServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/alpha/profile/services/WalletServices.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +35,9 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1eoHzOdSayPxFiB0DYynCkaIGvc" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -19,7 +45,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
   <component name="RunManager">
@@ -56,25 +84,29 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1876" height="366" key="GridCell.Tab.0.bottom" timestamp="1595457962859">
+    <state x="693" y="277" width="524" height="479" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1595481087256">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="366" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1595457962859" />
+    <state x="693" y="277" width="524" height="479" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595481087256" />
+    <state width="1876" height="244" key="GridCell.Tab.0.bottom" timestamp="1595484342633">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="244" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1595484342633" />
     <state width="1236" height="175" key="GridCell.Tab.0.bottom/0.23.1280.709@0.23.1280.709" timestamp="1594981415490" />
-    <state width="1876" height="366" key="GridCell.Tab.0.center" timestamp="1595457962857">
+    <state width="1876" height="244" key="GridCell.Tab.0.center" timestamp="1595484342632">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="366" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1595457962857" />
+    <state width="1876" height="244" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1595484342632" />
     <state width="1236" height="175" key="GridCell.Tab.0.center/0.23.1280.709@0.23.1280.709" timestamp="1594981415489" />
-    <state width="1876" height="366" key="GridCell.Tab.0.left" timestamp="1595457962856">
+    <state width="1876" height="244" key="GridCell.Tab.0.left" timestamp="1595484342632">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="366" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1595457962856" />
+    <state width="1876" height="244" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1595484342632" />
     <state width="1236" height="175" key="GridCell.Tab.0.left/0.23.1280.709@0.23.1280.709" timestamp="1594981415488" />
-    <state width="1876" height="366" key="GridCell.Tab.0.right" timestamp="1595457962858">
+    <state width="1876" height="244" key="GridCell.Tab.0.right" timestamp="1595484342633">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="366" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1595457962858" />
+    <state width="1876" height="244" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1595484342633" />
     <state width="1236" height="175" key="GridCell.Tab.0.right/0.23.1280.709@0.23.1280.709" timestamp="1594981415489" />
   </component>
 </project>

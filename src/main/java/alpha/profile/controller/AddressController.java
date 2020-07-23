@@ -25,9 +25,9 @@ public class AddressController {
     }
 
     @GetMapping("/address/{emailId}")
-    public List<Address> getAllAddressesByEmail(@PathVariable("emailId")String addressId) {
+    public List<Address> getAllAddressesByEmail(@PathVariable("emailId")String emailId) {
         try {
-            return addressService.getAddressesByEmailId( addressId );
+            return addressService.getAddressesByEmailId( emailId );
         } catch (AddressNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
         }
