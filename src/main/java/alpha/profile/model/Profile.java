@@ -38,4 +38,9 @@ public class Profile {
 
     @Column(name="password",length=30,nullable=false)
     private String password;
+
+    @Column(name="default_address",length=30)
+    private String defaultAddress;
+    @Column(name="default_card",length=30)
+    private String defaultCard;
 }

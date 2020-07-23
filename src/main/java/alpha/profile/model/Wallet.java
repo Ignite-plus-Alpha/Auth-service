@@ -31,10 +31,10 @@ public class Wallet {
     @Column(name="cardholder_name",length=50,nullable=false,unique=true)
     private String cardholderName;
 
-    @Column(name="card_number",length=50,nullable=false,unique=true)
+    @Column(name="card_number",length=16,nullable=false,unique=true)
     private Long cardNumber;
 
-    @Column(name="expiry_date",length=30,nullable=false)
+    @Column(name="expiry_date",nullable=false)
     private Date expiryDate;
 
     @Column(name="upi_id",length=50,nullable=false,unique=true)

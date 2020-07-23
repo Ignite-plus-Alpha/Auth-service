@@ -82,17 +82,4 @@ public class AddressService {
 
     }
 
-
-
-
-//    public Address updateAddressById(String addressId,String addressline1) throws AddressNotFoundException {
-//        Optional<Address> addressData = addressDao.findById(addressId);
-//
-//        if(addressDao.findById(addressId).isPresent()) {
-//            Address address=addressData.get();
-//            address.setAddressLine1(addressline1);
-//            return addressDao.save(address);
-//        }
-//      throw new AddressNotFoundException("Address not found");
-//    }
 }

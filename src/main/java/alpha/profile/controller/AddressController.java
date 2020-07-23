@@ -20,11 +20,13 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
+    //get all addresses in db
     @GetMapping("/address")
     public List<Address> getAllAddress() {
         return addressService.getAllAddress();
     }
 
+    //getAll addresses Of a particular user by their emailId
     @GetMapping("/address/{emailId}")
     public List<Address> getAllAddressesByEmail(@PathVariable("emailId")String emailId) {
         try {
@@ -34,23 +36,20 @@ public class AddressController {
         }
     }
 
+    //create an address
     @PostMapping("/address")
     public Address createAddress(@RequestBody Address address) {
         return addressService.createAddress(address);
     }
 
 
-    //get address by emailId/addressId
+    //get a particular address of a user by their emailId/addressId
     @GetMapping("/address/{emailId}/{addressId}")
     public Address getAddressByEmailIdAddressId(@PathVariable("emailId") String emailId,@PathVariable("addressId") String addressId){
         return addressService.getAddressByEmailIdAddressId(emailId,addressId);
     }
 
-//    @DeleteMapping("/address/{addressId}")
-//    public void deleteAddressById(@PathVariable("addressId") String addressId) throws AddressNotFoundException {
-//        addressService.deleteAddressById(addressId);
-//    }
-//
+    //update particular address of a user by their emailId and  corresponding AddressID
     @PutMapping("/address/{email}/{addressId}")
     public Address updateAddressByEmailAddressId(@PathVariable("email") String email,@PathVariable("addressId") String addressId,@RequestBody Address address) throws AddressNotFoundException{
         return addressService.updateAddressByEmailIdAddressId(email,addressId, address);

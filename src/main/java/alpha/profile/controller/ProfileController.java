@@ -1,5 +1,6 @@
 package alpha.profile.controller;
 
+import alpha.profile.exceptions.WalletNotFoundException;
 import alpha.profile.model.Profile;
 
 import alpha.profile.exceptions.UserNotFoundException;
@@ -68,6 +69,26 @@ public class ProfileController {
         try {
             return profileService.updateUserById(emailId, profile);
         } catch (UserNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
+        }
+    }
+
+    //update default address
+    @PutMapping("/user/address/{emailId}")
+    public Profile updateDefaultAddressByEmailId(@PathVariable("emailId") String emailId, @RequestBody String addressId ) {
+        try {
+            return profileService.updateDefaultAddress(emailId, addressId);
+        } catch (UserNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
+        }
+    }
+
+    //update default wallet
+    @PutMapping("/user/wallet/{emailId}")
+    public Profile updateDefaultWalletByEmailId(@PathVariable("emailId") String emailId, @RequestBody String walletId ) {
+        try {
+            return profileService.updateDefaultWallet(emailId, walletId);
+        } catch (WalletNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
         }
     }

@@ -2,6 +2,7 @@ package alpha.profile.services;
 
 import alpha.profile.dao.ProfileDao;
 import alpha.profile.exceptions.UserNotFoundException;
+import alpha.profile.exceptions.WalletNotFoundException;
 import alpha.profile.model.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,4 +75,29 @@ public class ProfileService {
         throw new UserNotFoundException("User not found");
     }
 
+    //set default address
+    public Profile updateDefaultAddress(String emailId, String addressId) throws UserNotFoundException {
+        Optional<Profile> userData = profileDao.findById(emailId);
+
+        if(profileDao.findById(emailId).isPresent()) {
+            Profile prev = userData.get();
+            prev.setDefaultAddress(addressId);
+            return profileDao.save(prev);
+        }
+        throw new UserNotFoundException("User not found");
+    }
+
+    //update default wallet
+    public Profile updateDefaultWallet(String emailId,String walletId) throws WalletNotFoundException {
+        Optional<Profile> userData = profileDao.findById(emailId);
+
+        if(!profileDao.findById(emailId).isPresent()) {
+            throw new WalletNotFoundException("wallet not found");
+        }
+        Profile prev = userData.get();
+        prev.setDefaultCard(walletId);
+        return profileDao.save(prev);
+
+    }
 }
+
