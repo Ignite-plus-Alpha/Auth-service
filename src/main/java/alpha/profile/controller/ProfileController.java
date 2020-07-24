@@ -24,7 +24,7 @@ public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
-    @GetMapping("/users")
+    @GetMapping("/user")
     public List<Profile> getAllUsers() {
         return profileService.getAll();
 
@@ -41,10 +41,10 @@ public class ProfileController {
         }
     }
 
-//    @GetMapping("/user/{userId}")
-//    public Optional<Profile> getUserById(@PathVariable("userId") String userId) {
+//    @GetMapping("/email/{emailId}")
+//    public Optional<Profile> getUserById(@PathVariable("emailId") String emailId) {
 //        try {
-//            return profileService.getUserById(userId);
+//            return profileService.getUserById(emailId);
 //        } catch (UserNotFoundException e) {
 //            throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
 //
@@ -58,9 +58,9 @@ public class ProfileController {
 
     }
 
-    @DeleteMapping("/user/{userId}")
-    public void deleteUserById(@PathVariable("userId") String userId) throws UserNotFoundException {
-        profileService.deleteUserById(userId);
+    @DeleteMapping("/user/{emailId}")
+    public void deleteUserById(@PathVariable("emailId") String emailId) throws UserNotFoundException {
+        profileService.deleteUserById(emailId);
     }
 
 
@@ -75,7 +75,7 @@ public class ProfileController {
 
     //update default address
     @PutMapping("/user/address/{emailId}")
-    public Profile updateDefaultAddressByEmailId(@PathVariable("emailId") String emailId, @RequestBody String addressId ) {
+    public Profile updateDefaultAddressByUserId(@PathVariable("emailId") String emailId, @RequestBody String addressId ) {
         try {
             return profileService.updateDefaultAddress(emailId, addressId);
         } catch (UserNotFoundException e) {
@@ -85,7 +85,7 @@ public class ProfileController {
 
     //update default wallet
     @PutMapping("/user/wallet/{emailId}")
-    public Profile updateDefaultWalletByEmailId(@PathVariable("emailId") String emailId, @RequestBody String walletId ) {
+    public Profile updateDefaultWalletByUserId(@PathVariable("emailId") String emailId, @RequestBody String walletId ) {
         try {
             return profileService.updateDefaultWallet(emailId, walletId);
         } catch (WalletNotFoundException e) {

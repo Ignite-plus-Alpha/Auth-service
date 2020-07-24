@@ -26,11 +26,11 @@ public class AddressController {
         return addressService.getAllAddress();
     }
 
-    //getAll addresses Of a particular user by their emailId
-    @GetMapping("/address/{emailId}")
-    public List<Address> getAllAddressesByEmail(@PathVariable("emailId")String emailId) {
+    //getAll addresses Of a particular user by their userId
+    @GetMapping("/address/{userId}")
+    public List<Address> getAllAddressesByUserId(@PathVariable("userId")String userId) {
         try {
-            return addressService.getAddressesByEmailId( emailId );
+            return addressService.getAddressesByUserId( userId );
         } catch (AddressNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
         }
@@ -43,22 +43,22 @@ public class AddressController {
     }
 
 
-    //get a particular address of a user by their emailId/addressId
-    @GetMapping("/address/{emailId}/{addressId}")
-    public Address getAddressByEmailIdAddressId(@PathVariable("emailId") String emailId,@PathVariable("addressId") String addressId){
-        return addressService.getAddressByEmailIdAddressId(emailId,addressId);
+    //get a particular address of a user by their userId/addressId
+    @GetMapping("/address/{userId}/{addressId}")
+    public Address getAddressByUserIdAddressId(@PathVariable("userId") String userId,@PathVariable("addressId") String addressId){
+        return addressService.getAddressByUserIdAddressId(userId,addressId);
     }
 
-    //update particular address of a user by their emailId and  corresponding AddressID
-    @PutMapping("/address/{email}/{addressId}")
-    public Address updateAddressByEmailAddressId(@PathVariable("email") String email,@PathVariable("addressId") String addressId,@RequestBody Address address) throws AddressNotFoundException{
-        return addressService.updateAddressByEmailIdAddressId(email,addressId, address);
+    //update particular address of a user by their userId and  corresponding AddressID
+    @PutMapping("/address/{userId}/{addressId}")
+    public Address updateAddressByUserIdAddressId(@PathVariable("userId") String userId,@PathVariable("addressId") String addressId,@RequestBody Address address) throws AddressNotFoundException{
+        return addressService.updateAddressByUserIdAddressId(userId,addressId, address);
     }
 
 
-    //delete a particular address of a user taking their emailId and the particular addressId
-    @DeleteMapping("/address/{emailId}/{addressId}")
-    public void deleteAddressByEmailIdWalletId(@PathVariable("emailId") String emailId,@PathVariable("addressId") String addressId) throws AddressNotFoundException {
-        addressService.deleteAddressByEmailIdAddressId(emailId, addressId);
+    //delete a particular address of a user taking their userId and the particular addressId
+    @DeleteMapping("/address/{userId}/{addressId}")
+    public void deleteAddressByUserIdWalletId(@PathVariable("userId") String userId,@PathVariable("addressId") String addressId) throws AddressNotFoundException {
+        addressService.deleteAddressByUserIdAddressId(userId, addressId);
     }
 }

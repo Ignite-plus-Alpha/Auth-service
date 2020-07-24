@@ -30,16 +30,16 @@ public class AddressService {
     }
 
 
-    public List<Address> getAddressesByEmailId(String email) throws AddressNotFoundException {
-        List<Address> address= addressDao.findByEmail(email);
+    public List<Address> getAddressesByUserId(String userId) throws AddressNotFoundException {
+        List<Address> address= addressDao.findByUserid(userId);
 
         if(address==null)
             throw new AddressNotFoundException("address not found");
         return address;
     }
 
-    public Address updateAddressByEmailIdAddressId(String email,String addressId,Address newAddress) throws AddressNotFoundException {
-        List<Address>  userAddresses = addressDao.findByEmail(email);
+    public Address updateAddressByUserIdAddressId(String userId,String addressId,Address newAddress) throws AddressNotFoundException {
+        List<Address>  userAddresses = addressDao.findByUserid(userId);
 
         for (Address tempAddress:userAddresses
         ) {
@@ -57,9 +57,9 @@ public class AddressService {
 
     }
 
-    //get particular address by email and AddressId
-    public Address getAddressByEmailIdAddressId(String email,String addressId) {
-        List<Address>  address = addressDao.findByEmail(email);
+    //get particular address by userId and AddressId
+    public Address getAddressByUserIdAddressId(String userId,String addressId) {
+        List<Address>  address = addressDao.findByUserid(userId);
 
         for (Address ad:address
         ) {
@@ -70,9 +70,9 @@ public class AddressService {
         return null;
     }
 
-    //delete particular address by email and AddressId
-    public void deleteAddressByEmailIdAddressId(String email,String addressId) {
-        List<Address>  addresses = addressDao.findByEmail(email);
+    //delete particular address by user and AddressId
+    public void deleteAddressByUserIdAddressId(String userId,String addressId) {
+        List<Address>  addresses = addressDao.findByUserid(userId);
         for (Address tempAddress:addresses
         ) {
             if(tempAddress.getAddressId().equals(addressId) )

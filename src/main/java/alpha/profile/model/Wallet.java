@@ -23,10 +23,10 @@ import java.util.UUID;
 public class Wallet {
 
     //in categoryId - out list of items in a particular category
-    @PrimaryKeyColumn(name = "email",ordinal = 0,type = PrimaryKeyType.PARTITIONED)
-    private String email;
-    @PrimaryKeyColumn(name = "walletid",ordinal = 0,type = PrimaryKeyType.CLUSTERED)
-    private String walletid= UUID.randomUUID().toString();
+    @PrimaryKeyColumn(name = "userid",ordinal = 0,type = PrimaryKeyType.PARTITIONED)
+    private String userid;
+    @PrimaryKeyColumn(name = "walletId",ordinal = 0,type = PrimaryKeyType.CLUSTERED)
+    private String walletId= UUID.randomUUID().toString();
 
     @Column(name="cardholder_name",length=50,nullable=false,unique=true)
     private String cardholderName;

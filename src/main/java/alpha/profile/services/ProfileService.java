@@ -38,13 +38,13 @@ public class ProfileService {
         return user;
     }
 
-//    public Optional<Profile> getUserById(String userId) throws UserNotFoundException {
-//        Optional<Profile> user= profileDao.findById(userId);
-//
-//        if(!user.isPresent())
-//            throw new UserNotFoundException("user not found");
-//        return user;
-//    }
+    public Optional<Profile> getUserById(String emailId) throws UserNotFoundException {
+        Optional<Profile> user= profileDao.findById(emailId);
+
+        if(!user.isPresent())
+            throw new UserNotFoundException("user not found");
+        return user;
+    }
 
 
 

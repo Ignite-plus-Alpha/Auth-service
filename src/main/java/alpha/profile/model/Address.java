@@ -19,8 +19,8 @@ import java.util.UUID;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Address {
     //in categoryId - out list of items in a particular category
-    @PrimaryKeyColumn(name = "email",ordinal = 0,type = PrimaryKeyType.PARTITIONED)
-    private String email;
+    @PrimaryKeyColumn(name = "userid",ordinal = 0,type = PrimaryKeyType.PARTITIONED)
+    private String userid;
     @PrimaryKeyColumn(name = "addressId",ordinal = 0,type = PrimaryKeyType.CLUSTERED)
     private String addressId= UUID.randomUUID().toString();
 

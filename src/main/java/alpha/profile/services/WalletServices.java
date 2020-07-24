@@ -30,24 +30,23 @@ public class WalletServices {
         return walletDao.findAll();
     }
 
-    //find all wallets associated with an email address
-    public List<Wallet> getWalletsByEmail(String email) throws  WalletNotFoundException {
-        List<Wallet> wallets= walletDao.findByEmail(email);
+    //find all wallets associated with an User address
+    public List<Wallet> getWalletsByUserID(String userId) throws  WalletNotFoundException {
+        List<Wallet> wallets= walletDao.findByUserid(userId);
 
         if(wallets==null)
             throw new WalletNotFoundException("address not found");
         return wallets;
     }
 
-    //update a particular wallet associated with an email address
-    public Wallet updateWalletByEmailIdWalletId(String email,String walletId,Wallet newWallet) throws WalletNotFoundException {
-        List<Wallet>  userWallets = walletDao.findByEmail(email);
+    //update a particular wallet associated with an User address
+    public Wallet updateWalletByUserIdWalletId(String userId,String walletId,Wallet newWallet) throws WalletNotFoundException {
+        List<Wallet>  userWallets = walletDao.findByUserid(userId);
 
         for (Wallet tempWallet:userWallets
         ) {
-            if(tempWallet.getWalletid().equals(walletId) )
-           {
-                  tempWallet.setExpiryDate(newWallet.getExpiryDate());
+            if(tempWallet.getWalletId().equals(walletId) )
+           {    tempWallet.setExpiryDate(newWallet.getExpiryDate());
                 return walletDao.save(tempWallet);
            }
         }
@@ -55,58 +54,27 @@ public class WalletServices {
 
     }
 
-    //get particular address by email and AddressId
-    public Wallet getWalletByEmailIdWalletId(String email,String walletId) {
-        List<Wallet>  wallets = walletDao.findByEmail(email);
+    //get particular address by user and AddressId
+    public Wallet getWalletByUserIdWalletId(String userId,String walletId) {
+        List<Wallet>  wallets = walletDao.findByUserid(userId);
 
         for (Wallet tempWallet:wallets
         ) {
-            if(tempWallet.getWalletid().equals(walletId) )
+            if(tempWallet.getWalletId().equals(walletId) )
             { return tempWallet;
             }
         }
         return null;
     }
 
-    //delete particular address by email and AddressId
-    public void deleteWalletByEmailIdWalletId(String email,String walletId) {
-        List<Wallet>  wallets = walletDao.findByEmail(email);
+    //delete particular address by user and AddressId
+    public void deleteWalletByUserIdWalletId(String userId,String walletId) {
+        List<Wallet>  wallets = walletDao.findByUserid(userId);
         for (Wallet tempWallet:wallets
         ) {
-            if(tempWallet.getWalletid().equals(walletId) )
+            if(tempWallet.getWalletId().equals(walletId) )
             {  walletDao.delete(tempWallet);
             }
         }
-
     }
-
-
-
-
-//    public Optional<Wallet> getWalletById(String walletId) throws WalletNotFoundException {
-//        Optional<Wallet> wallet = walletDao.findById(walletId);
-//
-//        if (!wallet.isPresent())
-//            throw new WalletNotFoundException("Card not found");
-//        return wallet;
-//    }
-
-//    public void deleteWalletById(String walletId) {
-//        Optional<Wallet> wallet = walletDao.findById(walletId);
-//        if (!wallet.isPresent()) {
-//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Card not found in repo,enter correct details");
-//        }
-//        walletDao.deleteById(walletId);
-//    }
-
-//    public Wallet updateWalletById(String walletId, String Cardholder_name) throws WalletNotFoundException {
-//        Optional<Wallet> walletData = walletDao.findById(walletId);
-//
-//        if (walletDao.findById(walletId).isPresent()) {
-//            Wallet wallet = walletData.get();
-//            wallet.setCardholderName(Cardholder_name);
-//            return walletDao.save(wallet);
-//        }
-//        throw new WalletNotFoundException("Wallet not found");
-//    }
 }
