@@ -35,7 +35,7 @@ public class Wallet {
     private Long cardNumber;
 
     @Column(name="expiry_date",nullable=false)
-    private Date expiryDate;
+    private String expiryDate;
 
     @Column(name="upi_id",length=50,nullable=false,unique=true)
     private String upiId;

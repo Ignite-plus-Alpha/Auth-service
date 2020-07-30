@@ -69,7 +69,7 @@ public class ProfileService {
             prev.setFirstName(profile.getFirstName());
             prev.setLastName(profile.getLastName());
             prev.setMobile(profile.getMobile());
-            prev.setPassword(profile.getPassword());
+//            prev.setPassword(profile.getPassword());
             return profileDao.save(prev);
         }
         throw new UserNotFoundException("User not found");

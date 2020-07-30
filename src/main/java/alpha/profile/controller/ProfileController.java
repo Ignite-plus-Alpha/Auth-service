@@ -15,10 +15,9 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
-
 public class ProfileController {
 
     @Autowired
@@ -27,8 +26,6 @@ public class ProfileController {
     @GetMapping("/user")
     public List<Profile> getAllUsers() {
         return profileService.getAll();
-
-
     }
 
     @GetMapping("/user/{emailId}")

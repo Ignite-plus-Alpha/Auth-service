@@ -77,9 +77,9 @@ public class AddressService {
         ) {
             if(tempAddress.getAddressId().equals(addressId) )
             {  addressDao.delete(tempAddress);
+
             }
         }
-
     }
 
 }
