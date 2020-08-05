@@ -37,6 +37,12 @@ public class ProfileController {
         return profileService.getAll();
     }
 
+    @ApiOperation(value = "check if user is already registered")
+    @GetMapping("/register/{emailId}")
+    public String registerUser(@PathVariable("emailId") String emailId) throws UserNotFoundException {
+        return profileService.createUserIfNotExist(emailId);
+    }
+
     @ApiOperation(value = "get a user's detail by their email id")
     @GetMapping("/user/{emailId}")
     public Optional<Profile> getUserByEmailId(@PathVariable("emailId") String emailId) {

@@ -99,5 +99,19 @@ public class ProfileService {
         return profileDao.save(prev);
 
     }
+
+    //check if user exists
+    public String createUserIfNotExist(String email) throws UserNotFoundException {
+        List<Profile> users= profileDao.findAll();
+        for (Profile profile:users
+             ) {
+            if(profile.getEmail().equals(email))
+                return profile.getUserId();
+            }
+        Profile tempProfile=new Profile();
+        tempProfile.setEmail(email);
+        return profileDao.save(tempProfile).getUserId();
+
+    }
 }
 
