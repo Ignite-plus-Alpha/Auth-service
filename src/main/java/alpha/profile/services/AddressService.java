@@ -50,6 +50,7 @@ public class AddressService {
                 tempAddress.setCountry(newAddress.getCountry());
                 tempAddress.setState(newAddress.getState());
                 tempAddress.setZipcode(newAddress.getZipcode());
+                tempAddress.setAddressType(newAddress.getAddressType());
                  return addressDao.save(tempAddress);
             }
         }
