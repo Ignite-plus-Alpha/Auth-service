@@ -43,7 +43,10 @@ public class AddressController {
     //create an address
     @ApiOperation(value = "lets us create an address entry for a user")
     @PostMapping("/address")
-    public Address createAddress(@RequestBody Address address) {
+    public Address createAddress(@RequestBody Address address) throws AddressNotFoundException {
+
+        String userId=address.getUserid();
+        if(getAllAddressesByUserId(userId).size()==5) throw new AddressNotFoundException("can not add more than 5 addresses");
         return addressService.createAddress(address);
     }
 

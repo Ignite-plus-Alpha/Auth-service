@@ -43,7 +43,10 @@ public class WalletController {
 
     @ApiOperation(value = "create a wallet")
     @PostMapping("/wallet")
-    public Wallet createWallet( @RequestBody Wallet wallet) {
+    public Wallet createWallet( @RequestBody Wallet wallet) throws WalletNotFoundException {
+        String userId=wallet.getUserid();
+        if(getAllWalletsByUserId(userId).size()==5) throw new WalletNotFoundException("can not add more than 5 wallet");
+
         return walletService.createWallet(wallet);
     }
 
