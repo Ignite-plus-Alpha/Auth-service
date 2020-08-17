@@ -10,6 +10,7 @@ import org.springframework.data.cassandra.core.mapping.*;
 import org.springframework.data.cassandra.core.mapping.Table;
 import javax.persistence.*;
 import javax.persistence.Column;
+import java.util.UUID;
 
 
 @Table("profile")
@@ -24,18 +25,23 @@ public class Profile {
     @NonNull
     private String email;
 
-    @Column(name="user_id")
-    private String userId;
+    @Column(name="user_id",nullable=false,unique=true)
+    private String userId= UUID.randomUUID().toString();;
 
-    @Column(name="first_name",length=50,nullable=false,unique=true)
+    @Column(name="first_name",length=50)
     private String firstName;
 
-    @Column(name="last_name",length=50,nullable=false,unique=true)
+    @Column(name="last_name",length=50)
     private String lastName;
 
-    @Column(name="mobile",length=10,nullable=false)
+    @Column(name="mobile",length=10)
     private String mobile;
 
-    @Column(name="password",length=30,nullable=false)
+    @Column(name="password",length=30)
     private String password;
+
+    @Column(name="default_address",length=30)
+    private String defaultAddress;
+    @Column(name="default_card",length=30)
+    private String defaultCard;
 }

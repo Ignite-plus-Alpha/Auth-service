@@ -6,10 +6,14 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 import javax.persistence.Column;
+import java.util.Date;
+import java.util.UUID;
 
 @Table("wallet")
 @NoArgsConstructor
@@ -18,19 +22,22 @@ import javax.persistence.Column;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Wallet {
 
-    @PrimaryKey
-    private String walletId;
+    //in categoryId - out list of items in a particular category
+    @PrimaryKeyColumn(name = "userid",ordinal = 0,type = PrimaryKeyType.PARTITIONED)
+    private String userid;
+    @PrimaryKeyColumn(name = "walletId",ordinal = 0,type = PrimaryKeyType.CLUSTERED)
+    private String walletId= UUID.randomUUID().toString();
 
-    @Column(name="CARDHOLDER NAME",length=50,nullable=false,unique=true)
+    @Column(name="cardholder_name",length=50,nullable=false,unique=true)
     private String cardholderName;
 
-    @Column(name="CARD_NUMBER",length=50,nullable=false,unique=true)
+    @Column(name="card_number",length=16,nullable=false,unique=true)
     private Long cardNumber;
 
-    @Column(name="EXPIRY DATE",length=30,nullable=false)
-    private Long expiryDate;
+    @Column(name="expiry_date",nullable=false)
+    private String expiryDate;
 
-    @Column(name="UPI ID",length=50,nullable=false,unique=true)
+    @Column(name="upi_id",length=50,nullable=false,unique=true)
     private String upiId;
 
 }

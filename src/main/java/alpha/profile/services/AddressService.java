@@ -3,11 +3,14 @@ package alpha.profile.services;
 import alpha.profile.exceptions.AddressNotFoundException;
 import alpha.profile.model.Address;
 import alpha.profile.dao.AddressDao;
+import alpha.profile.model.Profile;
+import alpha.profile.model.Wallet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,30 +29,58 @@ public class AddressService {
         return addressDao.findAll();
     }
 
-    public Optional<Address> getAddressById(String addressId) throws AddressNotFoundException {
-        Optional<Address> address= addressDao.findById(addressId);
 
-        if(!address.isPresent())
+    public List<Address> getAddressesByUserId(String userId) throws AddressNotFoundException {
+        List<Address> address= addressDao.findByUserid(userId);
+
+        if(address==null)
             throw new AddressNotFoundException("address not found");
         return address;
     }
 
-    public void deleteAddressById(String addressId) {
-        Optional<Address> address= addressDao.findById(addressId);
-        if(!address.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Address not found in repo,enter correct details");
+    public Address updateAddressByUserIdAddressId(String userId,String addressId,Address newAddress) throws AddressNotFoundException {
+        List<Address>  userAddresses = addressDao.findByUserid(userId);
+
+        for (Address tempAddress:userAddresses
+        ) {
+            if(tempAddress.getAddressId().equals(addressId) )
+            {   tempAddress.setAddressLine1(newAddress.getAddressLine1());
+                tempAddress.setAddressLine2(newAddress.getAddressLine2());
+                tempAddress.setCity(newAddress.getCity());
+                tempAddress.setCountry(newAddress.getCountry());
+                tempAddress.setState(newAddress.getState());
+                tempAddress.setZipcode(newAddress.getZipcode());
+                tempAddress.setAddressType(newAddress.getAddressType());
+                 return addressDao.save(tempAddress);
+            }
         }
-        addressDao.deleteById(addressId);
+        throw new AddressNotFoundException("address not found");
+
     }
 
-    public Address updateAddressById(String addressId,String addressline1) throws AddressNotFoundException {
-        Optional<Address> addressData = addressDao.findById(addressId);
+    //get particular address by userId and AddressId
+    public Address getAddressByUserIdAddressId(String userId,String addressId) {
+        List<Address>  address = addressDao.findByUserid(userId);
 
-        if(addressDao.findById(addressId).isPresent()) {
-            Address address=addressData.get();
-            address.setAddressLine1(addressline1);
-            return addressDao.save(address);
+        for (Address ad:address
+        ) {
+            if(ad.getAddressId().equals(addressId) )
+            { return ad;
+            }
         }
-      throw new AddressNotFoundException("Address not found");
+        return null;
     }
+
+    //delete particular address by user and AddressId
+    public void deleteAddressByUserIdAddressId(String userId,String addressId) {
+        List<Address>  addresses = addressDao.findByUserid(userId);
+        for (Address tempAddress:addresses
+        ) {
+            if(tempAddress.getAddressId().equals(addressId) )
+            {  addressDao.delete(tempAddress);
+
+            }
+        }
+    }
+
 }

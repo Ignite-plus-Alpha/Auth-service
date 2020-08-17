@@ -1,6 +1,8 @@
 package alpha.profile.services;
 
+import alpha.profile.exceptions.AddressNotFoundException;
 import alpha.profile.exceptions.WalletNotFoundException;
+import alpha.profile.model.Address;
 import alpha.profile.model.Wallet;
 import alpha.profile.dao.WalletDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,39 +20,61 @@ public class WalletServices {
     private WalletDao walletDao;
 
 
+    //create a wallet entry
     public Wallet createWallet(Wallet wallet) {
         return walletDao.save(wallet);
     }
 
-
+    //find list of wallets in db
     public List<Wallet> getAllWallet() {
         return walletDao.findAll();
     }
 
-    public Optional<Wallet> getWalletById(String walletId) throws WalletNotFoundException {
-        Optional<Wallet> wallet = walletDao.findById(walletId);
+    //find all wallets associated with an User address
+    public List<Wallet> getWalletsByUserID(String userId) throws  WalletNotFoundException {
+        List<Wallet> wallets= walletDao.findByUserid(userId);
 
-        if (!wallet.isPresent())
-            throw new WalletNotFoundException("Card not found");
-        return wallet;
+        if(wallets==null)
+            throw new WalletNotFoundException("address not found");
+        return wallets;
     }
 
-    public void deleteWalletById(String walletId) {
-        Optional<Wallet> wallet = walletDao.findById(walletId);
-        if (!wallet.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Card not found in repo,enter correct details");
+    //update a particular wallet associated with an User address
+    public Wallet updateWalletByUserIdWalletId(String userId,String walletId,Wallet newWallet) throws WalletNotFoundException {
+        List<Wallet>  userWallets = walletDao.findByUserid(userId);
+
+        for (Wallet tempWallet:userWallets
+        ) {
+            if(tempWallet.getWalletId().equals(walletId) )
+           {    tempWallet.setExpiryDate(newWallet.getExpiryDate());
+                return walletDao.save(tempWallet);
+           }
         }
-        walletDao.deleteById(walletId);
+        throw new WalletNotFoundException("wallet not found");
+
     }
 
-    public Wallet updateWalletById(String walletId, String Cardholder_name) throws WalletNotFoundException {
-        Optional<Wallet> walletData = walletDao.findById(walletId);
+    //get particular address by user and AddressId
+    public Wallet getWalletByUserIdWalletId(String userId,String walletId) {
+        List<Wallet>  wallets = walletDao.findByUserid(userId);
 
-        if (walletDao.findById(walletId).isPresent()) {
-            Wallet wallet = walletData.get();
-            wallet.setCardholderName(Cardholder_name);
-            return walletDao.save(wallet);
+        for (Wallet tempWallet:wallets
+        ) {
+            if(tempWallet.getWalletId().equals(walletId) )
+            { return tempWallet;
+            }
         }
-        throw new WalletNotFoundException("Wallet not found");
+        return null;
+    }
+
+    //delete particular address by user and AddressId
+    public void deleteWalletByUserIdWalletId(String userId,String walletId) {
+        List<Wallet>  wallets = walletDao.findByUserid(userId);
+        for (Wallet tempWallet:wallets
+        ) {
+            if(tempWallet.getWalletId().equals(walletId) )
+            {  walletDao.delete(tempWallet);
+            }
+        }
     }
 }
