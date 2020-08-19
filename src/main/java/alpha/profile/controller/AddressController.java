@@ -1,12 +1,14 @@
 package alpha.profile.controller;
 
 import alpha.profile.exceptions.AddressNotFoundException;
+import alpha.profile.exceptions.MaxLimitReached;
 import alpha.profile.exceptions.WalletNotFoundException;
 import alpha.profile.model.Address;
 import alpha.profile.services.AddressService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -21,6 +23,8 @@ public class AddressController {
 
     @Autowired
     private AddressService addressService;
+    @Value("${limit.max}")
+    private int max;
 
     //get all addresses in db
     @ApiOperation(value = "this will give all addresses in our db")
@@ -43,10 +47,10 @@ public class AddressController {
     //create an address
     @ApiOperation(value = "lets us create an address entry for a user")
     @PostMapping("/address")
-    public Address createAddress(@RequestBody Address address) throws AddressNotFoundException {
+    public Address createAddress(@RequestBody Address address) throws MaxLimitReached {
 
         String userId=address.getUserid();
-        if(getAllAddressesByUserId(userId).size()==5) throw new AddressNotFoundException("can not add more than 5 addresses");
+        if(getAllAddressesByUserId(userId).size()==max) throw new MaxLimitReached("can not add more than 5 addresses");
         return addressService.createAddress(address);
     }
 

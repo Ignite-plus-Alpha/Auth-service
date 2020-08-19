@@ -1,12 +1,14 @@
 package alpha.profile.controller;
 
 import alpha.profile.exceptions.AddressNotFoundException;
+import alpha.profile.exceptions.MaxLimitReached;
 import alpha.profile.exceptions.WalletNotFoundException;
 import alpha.profile.model.Address;
 import alpha.profile.model.Wallet;
 import alpha.profile.services.WalletServices;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -19,6 +21,8 @@ import java.util.List;
 public class WalletController {
     @Autowired
     private WalletServices walletService;
+    @Value("${limit.max}")
+    private int max;
 
     @ApiOperation(value = "get all wallets in db")
     @GetMapping("/wallet")
@@ -43,9 +47,9 @@ public class WalletController {
 
     @ApiOperation(value = "create a wallet")
     @PostMapping("/wallet")
-    public Wallet createWallet( @RequestBody Wallet wallet) throws WalletNotFoundException {
+    public Wallet createWallet( @RequestBody Wallet wallet) throws MaxLimitReached {
         String userId=wallet.getUserid();
-        if(getAllWalletsByUserId(userId).size()==5) throw new WalletNotFoundException("can not add more than 5 wallet");
+        if(getAllWalletsByUserId(userId).size()==max) throw new MaxLimitReached("can not add more than 5 wallet");
 
         return walletService.createWallet(wallet);
     }
