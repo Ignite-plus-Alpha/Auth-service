@@ -33,18 +33,29 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+
 	compile('org.springframework.boot:spring-boot-starter')
 	compile("jakarta.persistence:jakarta.persistence-api:2.2.3")
 	compile("org.projectlombok:lombok:${lombokVersion}")
 	annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
-	testCompile('org.springframework.boot:spring-boot-starter-test')
 	compile("org.springframework.data:spring-data-cassandra:2.2.5.RELEASE")
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0'
+
 
 	compile('org.springframework.boot:spring-boot-starter-web')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+
+	testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+	testCompile group: 'io.rest-assured', name: 'spring-mock-mvc', version: '3.3.0'
+
+	testImplementation(
+			"junit:junit:4.12",
+			"org.easytesting:fest-assert-core:2.0M10",
+			"org.springframework.boot:spring-boot-starter-test",
+			"javax.activation:activation:1.1"
+	)
+
 }
 
 
