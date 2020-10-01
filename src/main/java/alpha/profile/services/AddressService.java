@@ -3,22 +3,18 @@ package alpha.profile.services;
 import alpha.profile.exceptions.AddressNotFoundException;
 import alpha.profile.model.Address;
 import alpha.profile.dao.AddressDao;
-import alpha.profile.model.Profile;
-import alpha.profile.model.Wallet;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AddressService {
-    @Autowired
-    private AddressDao addressDao;
 
+    private final AddressDao addressDao;
+
+
+    public AddressService(AddressDao addressDao) {
+        this.addressDao = addressDao;
+    }
 
     public Address createAddress(Address address) {
         return addressDao.save(address);
@@ -50,6 +46,8 @@ public class AddressService {
                 tempAddress.setCountry(newAddress.getCountry());
                 tempAddress.setState(newAddress.getState());
                 tempAddress.setZipcode(newAddress.getZipcode());
+                tempAddress.setContact(newAddress.getContact());
+                tempAddress.setName(newAddress.getName());
                 tempAddress.setAddressType(newAddress.getAddressType());
                  return addressDao.save(tempAddress);
             }

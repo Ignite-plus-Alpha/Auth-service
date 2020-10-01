@@ -15,8 +15,15 @@ import java.util.Optional;
 @Service
 public class ProfileService {
 
-    @Autowired
-    private ProfileDao profileDao;
+
+    private final ProfileDao profileDao;
+
+
+    public ProfileService(ProfileDao profileDao) {
+        this.profileDao = profileDao;
+    }
+
+
 
 
 

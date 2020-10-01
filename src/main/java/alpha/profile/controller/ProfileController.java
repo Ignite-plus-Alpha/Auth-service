@@ -21,8 +21,14 @@ import java.util.UUID;
 @RequestMapping("/api")
 public class ProfileController {
 
-    @Autowired
-    private ProfileService profileService;
+
+    private final ProfileService profileService;
+
+    public ProfileController(ProfileService profileService) {
+        this.profileService = profileService;
+    }
+
+
 
 
     @GetMapping("/hello")

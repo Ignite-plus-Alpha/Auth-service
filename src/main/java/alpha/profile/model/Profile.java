@@ -15,14 +15,11 @@ import java.util.UUID;
 
 @Table("profile")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Profile {
 
     @PrimaryKey
-    @Column(name="email",length=30,nullable=false)
-    @NonNull
+    @Column(name="email",length=30,nullable=false,unique=true)
     private String email;
 
     @Column(name="user_id",nullable=false,unique=true)

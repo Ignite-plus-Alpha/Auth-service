@@ -19,8 +19,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class WalletController {
-    @Autowired
-    private WalletServices walletService;
+
+
+    private final WalletServices walletService;
+
+    public WalletController(WalletServices walletService) {
+        this.walletService = walletService;
+    }
+
     @Value("${limit.max}")
     private int max;
 

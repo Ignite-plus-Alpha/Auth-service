@@ -16,8 +16,6 @@ import java.util.Date;
 import java.util.UUID;
 
 @Table("wallet")
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Wallet {

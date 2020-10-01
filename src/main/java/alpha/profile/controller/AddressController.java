@@ -21,8 +21,13 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class AddressController {
 
-    @Autowired
-    private AddressService addressService;
+
+    private final AddressService addressService;
+
+    public AddressController(AddressService addressService) {
+        this.addressService = addressService;
+    }
+
     @Value("${limit.max}")
     private int max;
 

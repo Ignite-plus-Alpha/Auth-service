@@ -13,8 +13,6 @@ import java.util.UUID;
 
 @Table("address")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Address {
     //in categoryId - out list of items in a particular category
@@ -41,11 +39,13 @@ public class Address {
     @Column(name="COUNTRY",length=30,nullable=false)
     private String country;
 
+    @Column(name="Name",length=30,nullable=false)
+    private String Name;
+
+    @Column(name="Contact",length=30,nullable=false)
+    private String Contact;
 
     @Enumerated(EnumType.STRING)
     private AddressType addressType;
-
-
-
 
 }

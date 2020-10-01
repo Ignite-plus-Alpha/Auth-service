@@ -16,9 +16,12 @@ import java.util.Optional;
 
 @Service
 public class WalletServices {
-    @Autowired
-    private WalletDao walletDao;
 
+    private final WalletDao walletDao;
+
+    public WalletServices(WalletDao walletDao) {
+        this.walletDao = walletDao;
+    }
 
     //create a wallet entry
     public Wallet createWallet(Wallet wallet) {
